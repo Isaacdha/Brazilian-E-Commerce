@@ -183,6 +183,7 @@ if page == "🏠 Overview":
         
 # Customer Distribution Page
 elif page == "🌍 Customer Distribution":
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.title("Customer Distribution Analysis")
     st.image(".streamlit/Border_H.png", use_column_width=True)
     st.subheader(" Q. Where are the majority of our customers located in and Which city has the highest and lowest number of orders?")
@@ -258,7 +259,9 @@ elif page == "🌍 Customer Distribution":
 
 # Delivery Analysis Page
 elif page == "🚚 Delivery Analysis":
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.title("Delivery Time Analysis")
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.subheader(" Q. Which city experiences the longest delivery times, and which areas might benefit from infrastructure improvements?")
     
     st.markdown("")
@@ -356,7 +359,9 @@ elif page == "🚚 Delivery Analysis":
 
 # Customer Reviews Page
 elif page == "⭐ Customer Reviews":
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.title("Customer Reviews Analysis")
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.subheader(" Q. Which cities have lowest review scores, indicating a need for service evaluation in those areas?")
     
     st.markdown("")
@@ -475,7 +480,9 @@ elif page == "⭐ Customer Reviews":
 
 # Product Analysis Page
 elif page == "📦 Product Analysis":
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.title("Product Analysis")
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.subheader(" Q. Which product categories have the highest and lowest sales?")
     
     st.markdown("")
@@ -522,7 +529,9 @@ elif page == "📦 Product Analysis":
 
 # Payment Analysis Page
 elif page == "💳 Payment Analysis":
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.title("Payment Analysis")
+    st.image(".streamlit/Border_H.png", use_column_width=True)
     st.subheader(" Q. What are the most common payment methods, and how do they compare in terms of average purchase size?")
     
     st.markdown("")
