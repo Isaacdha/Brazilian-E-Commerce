@@ -131,7 +131,7 @@ st.markdown(
         bottom: 0;
         right: 0;
         width: 100%;
-        text-align: right;
+        text-align: left;
         padding: 10px;
         font-size: 12px;
         color: #888;
