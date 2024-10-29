@@ -20,7 +20,7 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     # Load all datasets
-    customers_df = pd.read_csv('Data/customers_dataset.csv', skiprows=1)
+    customers_df = pd.read_csv('Dashboard/Data/customers_dataset.csv', skiprows=1)
     geolocation_df = pd.read_csv('Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
     orders_df = pd.read_csv('Data/orders_dataset.csv', skiprows=1)
     order_items_df = pd.read_csv('Data/order_items_dataset.csv', skiprows=1)
