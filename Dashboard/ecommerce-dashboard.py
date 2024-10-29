@@ -107,7 +107,7 @@ with open('.streamlit/style.css') as f:
 st.sidebar.image(".streamlit/Banner.webp", use_column_width=True)
 st.sidebar.title("Brazillian E-Commerce Data Analysis")
 st.sidebar.title("Navigation")
-st.logo(".streamlit/Logo_Expand.png", icon_image=".streamlit/Logo_Small.png", use_container_width=True)
+st.logo(".streamlit/Logo_Expand.png", icon_image=".streamlit/Logo_Small.png", size="large")
 page = st.sidebar.radio(
     "Select a Page",
     ["🏠 Overview", 
