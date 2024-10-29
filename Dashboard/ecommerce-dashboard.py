@@ -184,7 +184,7 @@ if page == "🏠 Overview":
 # Customer Distribution Page
 elif page == "🌍 Customer Distribution":
     st.title("Customer Distribution Analysis")
-    st.image(".streamlit/Border_H.png", use_column_width=True)
+    st.image(".streamlit/Border_H.png", use_column_width=True, height=1)
     st.subheader(" Q. Where are the majority of our customers located in and Which city has the highest and lowest number of orders?")
     
     st.markdown("")
