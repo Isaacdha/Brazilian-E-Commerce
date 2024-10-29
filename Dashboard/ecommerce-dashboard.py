@@ -215,7 +215,7 @@ elif page == "🌍 Customer Distribution":
 
         # Load a map of Brazil
         world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-        brazil = world[world.name == "Brazil"]
+        brazil = world[world['name'] == "Brazil"]
 
         # Create a GeoDataFrame with customer locations
         geometry = [Point(xy) for xy in zip(customer_locations_df['geolocation_lng'], customer_locations_df['geolocation_lat'])]
