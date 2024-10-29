@@ -68,8 +68,9 @@ try:
     (customers_df, geolocation_df, orders_df, order_items_df, 
      order_payment_df, order_reviews_df, products_df, 
      product_category_trans_df, seller_df) = load_data()
-except FileNotFoundError:
-    st.error('Please ensure all dataset files are in the "Data" directory of this script.')
+except FileNotFoundError as e:
+    missing_file = str(e).split("'")[1]
+    st.error(f'File not found: {missing_file}. Please ensure all dataset files are in the "Data" directory of this script.')
     st.stop()
 
 # Sidebar
