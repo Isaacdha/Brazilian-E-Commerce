@@ -18,17 +18,20 @@ st.set_page_config(
 )
 
 # Function to load data
+@st.cache_data
 def load_customers():
     customers_df = pd.read_csv('Dashboard/Data/customers_dataset.csv', skiprows=1)
     customers_df['customer_city'] = customers_df['customer_city'].str.title()
     return customers_df
 
+@st.cache_data
 def load_geolocation():
     geolocation_df = pd.read_csv('Dashboard/Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
     geolocation_df['geolocation_city'] = geolocation_df['geolocation_city'].str.title()
     geolocation_df.drop_duplicates(inplace=True)
     return geolocation_df
 
+@st.cache_data
 def load_orders():
     orders_df = pd.read_csv('Dashboard/Data/orders_dataset.csv', skiprows=1)
     orders_df['order_purchase_timestamp'] = pd.to_datetime(orders_df['order_purchase_timestamp'])
@@ -38,14 +41,17 @@ def load_orders():
     orders_df['order_estimated_delivery_date'] = pd.to_datetime(orders_df['order_estimated_delivery_date'])
     return orders_df
 
+@st.cache_data
 def load_order_items():
     order_items_df = pd.read_csv('Dashboard/Data/order_items_dataset.csv', skiprows=1)
     order_items_df['shipping_limit_date'] = pd.to_datetime(order_items_df['shipping_limit_date'])
     return order_items_df
 
+@st.cache_data
 def load_order_payments():
     return pd.read_csv('Dashboard/Data/order_payments_dataset.csv', skiprows=1)
 
+@st.cache_data
 def load_order_reviews():
     order_reviews_df = pd.read_csv('Dashboard/Data/order_reviews_dataset.csv', skiprows=1)
     order_reviews_df['review_creation_date'] = pd.to_datetime(order_reviews_df['review_creation_date'])
@@ -54,14 +60,17 @@ def load_order_reviews():
     order_reviews_df['review_comment_message'].fillna('No Comments', inplace=True)
     return order_reviews_df
 
+@st.cache_data
 def load_products():
     products_df = pd.read_csv('Dashboard/Data/products_dataset.csv', skiprows=1)
     products_df['product_category_name'].fillna('Other Categories', inplace=True)
     return products_df
 
+@st.cache_data
 def load_product_category_trans():
     return pd.read_csv('Dashboard/Data/product_category_name_translation.csv', skiprows=1)
 
+@st.cache_data
 def load_seller():
     seller_df = pd.read_csv('Dashboard/Data/sellers_dataset.csv', skiprows=1)
     seller_df['seller_city'] = seller_df['seller_city'].str.title()
@@ -187,6 +196,15 @@ elif page == "🌍 Customer Distribution":
     st.markdown("Lets answer the first question by visualizing the customer distribution in a map")
     st.markdown("")
     
+    with st.container(border=True):
+        # Customer Location Map
+        st.markdown("#### Customer Distribution Map (Aggregated by City)")
+
+        # Display prerendered customer distribution map
+        st.image(".streamlit/Prerendered_Customer_Map.JPG", use_column_width=True)
+        
+        st.markdown("This map is pre-rendered due to folium crashing the app when rendering the map with all customer locations. The map shows the distribution of customers across Brazil, with the highest concentration of customers in the southeast region, particularly around the city of Sao Paulo. The northeastern and northern regions have fewer customers, indicating potential areas for growth and expansion.")
+        
     st.markdown("Now, lets answer the second question by visualizing 15 city with the highest and lowest number of orders") 
     st.markdown("")
     
