@@ -52,12 +52,12 @@ def load_data():
     # Remove duplicates from geolocation_df
     geolocation_df.drop_duplicates(inplace=True)
 
-    # Fill NaN values in product_df
-    products_df['product_category_name'].fillna('Other Categories', inplace=True)
-
-    # Fill NaN values in order_reviews_df
-    order_reviews_df['review_comment_title'].fillna('No Comments', inplace=True)
-    order_reviews_df['review_comment_message'].fillna('No Comments', inplace=True)
+    # Use a direct assignment to avoid chained assignment warnings
+    products_df = products_df.assign(product_category_name=products_df['product_category_name'].fillna('Other Categories'))
+    order_reviews_df = order_reviews_df.assign(
+        review_comment_title=order_reviews_df['review_comment_title'].fillna('No Comments'),
+        review_comment_message=order_reviews_df['review_comment_message'].fillna('No Comments')
+    )
 
     return (customers_df, geolocation_df, orders_df, order_items_df, 
             order_payment_df, order_reviews_df, products_df, 

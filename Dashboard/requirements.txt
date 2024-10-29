@@ -1,7 +1,6 @@
-streamlit
-pandas
-seaborn
-folium
-branca
-streamlit_folium
-plotly
+streamlit==1.39.0
+pandas==2.1.4
+seaborn==0.13.2
+folium==0.18.0
+branca==0.8.0
+plotly==5.22.0
