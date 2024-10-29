@@ -174,7 +174,7 @@ if page == "🏠 Overview":
 
     # Button to show profile of the maker
     with st.popover("About the Maker"):
-        st.markdown("#### Coder Profile")
+        st.subheader("Coder Profile")
         st.write("Name: Isaac Dwadattusyah Haikal Azziz")
         st.write("Email: isaacazziz@gmail.com")
         st.write("LinkedIn: [Isaac's LinkedIn](https://id.linkedin.com/in/isaacdha)")
