@@ -183,8 +183,8 @@ elif page == "🌍 Customer Distribution":
         customer_locations_df.drop_duplicates(subset='customer_id', inplace=True)
         
         # Aggregate customer locations by rounding latitude and longitude to reduce the number of points
-        customer_locations_df['rounded_lat'] = customer_locations_df['geolocation_lat'].round(2)
-        customer_locations_df['rounded_lng'] = customer_locations_df['geolocation_lng'].round(2)
+        customer_locations_df['rounded_lat'] = customer_locations_df['geolocation_lat'].round(1)
+        customer_locations_df['rounded_lng'] = customer_locations_df['geolocation_lng'].round(1)
         
         aggregated_locations = customer_locations_df.groupby(['rounded_lat', 'rounded_lng']).size().reset_index(name='count')
         
