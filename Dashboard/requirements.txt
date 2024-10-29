@@ -1,0 +1,7 @@
+streamlit
+pandas
+seaborn
+folium
+branca
+streamlit_folium
+plotly
