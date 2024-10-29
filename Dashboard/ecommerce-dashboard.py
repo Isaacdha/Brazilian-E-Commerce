@@ -213,18 +213,22 @@ elif page == "🌍 Customer Distribution":
         # Drop duplicates to ensure each customer ID has only one location
         customer_locations_df.drop_duplicates(subset='customer_id', inplace=True)
 
-        # Load a map of Brazil
-        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-        brazil = world[world['name'] == "Brazil"]
+        # Aggregate the number of customers in each city
+        city_customer_counts = customer_locations_df['customer_city'].value_counts().reset_index()
+        city_customer_counts.columns = ['customer_city', 'customer_count']
 
-        # Create a GeoDataFrame with customer locations
-        geometry = [Point(xy) for xy in zip(customer_locations_df['geolocation_lng'], customer_locations_df['geolocation_lat'])]
-        geo_df = gpd.GeoDataFrame(customer_locations_df, geometry=geometry)
+        # Select the top 15 cities with the most customers
+        top_15_customer_cities = city_customer_counts.head(15)
 
-        # Plot the map
-        fig, ax = plt.subplots(figsize=(10, 10))
-        brazil.plot(ax=ax, color='white', edgecolor='black')
+        # Plot the bar chart
+        fig, ax = plt.subplots(figsize=(12, 6))
+        sns.barplot(x='customer_count', y='customer_city', data=top_15_customer_cities, palette='viridis', ax=ax)
+        ax.set_title('Top 15 Cities with Most Customers')
+        ax.set_xlabel('Number of Customers')
+        ax.set_ylabel('City')
         st.pyplot(fig)
+        
+        
         
     st.markdown("Now, lets answer the second question by visualizing 15 city with the highest and lowest number of orders") 
     st.markdown("")
