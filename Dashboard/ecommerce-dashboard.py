@@ -103,7 +103,7 @@ except FileNotFoundError as e:
     st.error(f'File not found: {missing_file}. Please ensure all dataset files are in the "Data" directory of this script.')
     st.stop()
 
-with open('static/style.css') as f:
+with open('.streamlit/style.css') as f:
     st.write(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     
 # Sidebar
