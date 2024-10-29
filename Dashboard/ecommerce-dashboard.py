@@ -18,7 +18,6 @@ st.set_page_config(
 )
 
 # Function to load data
-@st.cache_data
 def load_customers():
     customers_df = pd.read_csv('Dashboard/Data/customers_dataset.csv', skiprows=1)
     customers_df['customer_city'] = customers_df['customer_city'].str.title()
@@ -31,7 +30,6 @@ def load_geolocation():
     geolocation_df.drop_duplicates(inplace=True)
     return geolocation_df
 
-@st.cache_data
 def load_orders():
     orders_df = pd.read_csv('Dashboard/Data/orders_dataset.csv', skiprows=1)
     orders_df['order_purchase_timestamp'] = pd.to_datetime(orders_df['order_purchase_timestamp'])
@@ -41,17 +39,14 @@ def load_orders():
     orders_df['order_estimated_delivery_date'] = pd.to_datetime(orders_df['order_estimated_delivery_date'])
     return orders_df
 
-@st.cache_data
 def load_order_items():
     order_items_df = pd.read_csv('Dashboard/Data/order_items_dataset.csv', skiprows=1)
     order_items_df['shipping_limit_date'] = pd.to_datetime(order_items_df['shipping_limit_date'])
     return order_items_df
 
-@st.cache_data
 def load_order_payments():
     return pd.read_csv('Dashboard/Data/order_payments_dataset.csv', skiprows=1)
 
-@st.cache_data
 def load_order_reviews():
     order_reviews_df = pd.read_csv('Dashboard/Data/order_reviews_dataset.csv', skiprows=1)
     order_reviews_df['review_creation_date'] = pd.to_datetime(order_reviews_df['review_creation_date'])
@@ -60,17 +55,14 @@ def load_order_reviews():
     order_reviews_df['review_comment_message'].fillna('No Comments', inplace=True)
     return order_reviews_df
 
-@st.cache_data
 def load_products():
     products_df = pd.read_csv('Dashboard/Data/products_dataset.csv', skiprows=1)
     products_df['product_category_name'].fillna('Other Categories', inplace=True)
     return products_df
 
-@st.cache_data
 def load_product_category_trans():
     return pd.read_csv('Dashboard/Data/product_category_name_translation.csv', skiprows=1)
 
-@st.cache_data
 def load_seller():
     seller_df = pd.read_csv('Dashboard/Data/sellers_dataset.csv', skiprows=1)
     seller_df['seller_city'] = seller_df['seller_city'].str.title()
