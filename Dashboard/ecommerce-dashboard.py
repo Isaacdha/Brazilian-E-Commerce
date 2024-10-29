@@ -166,42 +166,52 @@ elif page == "🌍 Customer Distribution":
     st.markdown("Lets answer the first question by visualizing the customer distribution in a map")
     st.markdown("")
     
-    with st.container(border = True):    
+    with st.container(border=True):
         # Customer Location Map
-        st.markdown("#### Customer Distribution Map (Aggregated by Location)")
-        
-        # Create customer location data
-        purchased_customers_df = customers_df[customers_df['customer_id'].isin(orders_df['customer_id'].unique())]
-        # Merge with orders_df to get the most recent purchase date for each customer
+        st.markdown("#### Customer Distribution Map (Aggregated by City)")
+
+        # Merge customers_df with orders_df to get the most recent purchase date for each customer
         recent_orders_df = orders_df.loc[orders_df.groupby('customer_id')['order_purchase_timestamp'].idxmax()]
 
         # Merge with geolocation_df to get location information
-        customer_locations_df = pd.merge(purchased_customers_df, recent_orders_df[['customer_id', 'order_purchase_timestamp']], on='customer_id')
+        customer_locations_df = pd.merge(customers_df, recent_orders_df[['customer_id', 'order_purchase_timestamp']], on='customer_id')
         customer_locations_df = pd.merge(customer_locations_df, geolocation_df, left_on='customer_zip_code_prefix', right_on='geolocation_zip_code_prefix')
 
         # Drop duplicates to ensure each customer ID has only one location
         customer_locations_df.drop_duplicates(subset='customer_id', inplace=True)
-        
-        # Aggregate customer locations by rounding latitude and longitude to reduce the number of points
-        customer_locations_df['rounded_lat'] = customer_locations_df['geolocation_lat'].round(1)
-        customer_locations_df['rounded_lng'] = customer_locations_df['geolocation_lng'].round(1)
-        
-        aggregated_locations = customer_locations_df.groupby(['rounded_lat', 'rounded_lng']).size().reset_index(name='count')
-        
+
+        # Aggregate customer locations by city
+        city_customer_counts = customer_locations_df.groupby('geolocation_city').size().reset_index(name='count')
+
+        # Merge with geolocation_df to get the average coordinates for each city
+        city_avg_coords = geolocation_df.groupby('geolocation_city').agg({
+            'geolocation_lat': 'mean',
+            'geolocation_lng': 'mean'
+        }).reset_index()
+
+        city_customer_counts = pd.merge(city_customer_counts, city_avg_coords, left_on='geolocation_city', right_on='geolocation_city')
+
         # Create map
         customer_map = folium.Map(location=[-14.2350, -51.9253], zoom_start=4)
-        marker_cluster = MarkerCluster().add_to(customer_map)
-        
-        for idx, row in aggregated_locations.iterrows():
+
+        # Create a color map
+        colormap = cm.LinearColormap(colors=['green', 'red'], vmin=city_customer_counts['count'].min(), vmax=city_customer_counts['count'].max())
+        colormap.caption = 'Number of Customers'
+
+        # Add city customer counts to the map with heatmap markers
+        for idx, row in city_customer_counts.iterrows():
             folium.CircleMarker(
-            location=[row['rounded_lat'], row['rounded_lng']],
-            radius=3,
-            color='blue',
-            fill=True,
-            fill_color='blue',
-            popup=f"Customers: {row['count']}"
-            ).add_to(marker_cluster)
-        
+                location=[row['geolocation_lat'], row['geolocation_lng']],
+                radius=10,
+                color=colormap(row['count']),
+                fill=True,
+                fill_color=colormap(row['count']),
+                popup=f"{row['geolocation_city']}: {row['count']} customers"
+            ).add_to(customer_map)
+
+        # Add the colormap to the map
+        customer_map.add_child(colormap)
+
         st_folium(customer_map, width='100%')
         st.markdown("The map used aggregates customer locations to reduce the number of points displayed. The majority of customers are located in the southeastern region of Brazil, particularly around São Paulo (showing the highest concentration) and Rio Grande do Sul Region. So, these areas must always be prioritized both through policies and infrastructure to maintain the number of consumers and the number of goods sold.")
     
