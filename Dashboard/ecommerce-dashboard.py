@@ -175,11 +175,9 @@ if page == "🏠 Overview":
     # Button to show profile of the maker
     with st.popover("About the Maker"):
         st.markdown("#### Coder Profile")
-        st.markdown("""
-            **Name:** Isaac Dwadattusyah Haikal Azziz\n
-            **Email:** isaacazziz@gmail.com\n
-            **LinkedIn:** [Isaac's LinkedIn](https://id.linkedin.com/in/isaacdha)
-            """)
+        st.write("Name: Isaac Dwadattusyah Haikal Azziz")
+        st.write("Email: isaacazziz@gmail.com")
+        st.write("LinkedIn: [Isaac's LinkedIn](https://id.linkedin.com/in/isaacdha)")
         
 # Customer Distribution Page
 elif page == "🌍 Customer Distribution":
