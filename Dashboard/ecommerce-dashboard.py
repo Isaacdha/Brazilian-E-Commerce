@@ -172,16 +172,9 @@ if page == "🏠 Overview":
                  f"${order_payment_df['payment_value'].mean():.2f}")
 
     # Button to show profile of the maker
-    if 'show_profile' not in st.session_state:
-        st.session_state.show_profile = False
-
-    if st.button("Show/Hide Profile of Maker"):
-        st.session_state.show_profile = not st.session_state.show_profile
-
-    if st.session_state.show_profile:
-        with st.container(border = True):
-            st.markdown("#### Coder Profile")
-            st.markdown("""
+    with st.popover("About the Maker"):
+        st.markdown("#### Coder Profile")
+        st.markdown("""
             **Name:** Isaac Dwadattusyah Haikal Azziz\n
             **Email:** isaacazziz@gmail.com\n
             **LinkedIn:** [Isaac's LinkedIn](https://id.linkedin.com/in/isaacdha)
@@ -199,10 +192,10 @@ elif page == "🌍 Customer Distribution":
     with st.container(border=True):
         # Customer Location Map
         st.markdown("#### Customer Distribution Map (Aggregated by City)")
-        st.markdown("This map is pre-rendered due to folium crashing the app when rendering the map with all customer locations.")
+        st.markdown("")
 
         # Display prerendered customer distribution map
-        st.image(".streamlit/Prerendered_Customer_Map.JPG", use_column_width=True)
+        st.image(".streamlit/Prerendered_Customer_Map.JPG", use_column_width=True, caption="This map is pre-rendered due to folium and st.map crashing the app when rendering with all customer locations.")
         
         st.markdown("The map shows the distribution of customers across Brazil, with the highest concentration of customers in the southeast region, particularly around the city of Sao Paulo. The northeastern and northern regions have fewer customers, indicating potential areas for growth and expansion.")
         
