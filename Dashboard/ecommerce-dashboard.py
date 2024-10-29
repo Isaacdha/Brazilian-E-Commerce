@@ -191,7 +191,7 @@ elif page == "🌍 Customer Distribution":
     
     with st.container(border=True):
         # Customer Location Map
-        st.markdown("#### Customer Distribution Map (Aggregated by City)")
+        st.markdown("#### Customer Distribution Map")
         st.markdown("")
 
         # Display prerendered customer distribution map
