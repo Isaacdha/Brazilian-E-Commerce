@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import folium
-import matplotlib.pyplot as plt
-from shapely.geometry import Point
 import branca.colormap as cm
-import geopandas as gpd
 from streamlit_folium import st_folium
 import plotly.express as px
 sns.set_style('whitegrid')
@@ -202,11 +199,12 @@ elif page == "🌍 Customer Distribution":
     with st.container(border=True):
         # Customer Location Map
         st.markdown("#### Customer Distribution Map (Aggregated by City)")
+        st.markdown("This map is pre-rendered due to folium crashing the app when rendering the map with all customer locations.")
 
         # Display prerendered customer distribution map
         st.image(".streamlit/Prerendered_Customer_Map.JPG", use_column_width=True)
         
-        st.markdown("This map is pre-rendered due to folium crashing the app when rendering the map with all customer locations. The map shows the distribution of customers across Brazil, with the highest concentration of customers in the southeast region, particularly around the city of Sao Paulo. The northeastern and northern regions have fewer customers, indicating potential areas for growth and expansion.")
+        st.markdown("The map shows the distribution of customers across Brazil, with the highest concentration of customers in the southeast region, particularly around the city of Sao Paulo. The northeastern and northern regions have fewer customers, indicating potential areas for growth and expansion.")
         
     st.markdown("Now, lets answer the second question by visualizing 15 city with the highest and lowest number of orders") 
     st.markdown("")
@@ -277,12 +275,11 @@ elif page == "🚚 Delivery Analysis":
                                     orders_df['order_purchase_timestamp'].astype('datetime64[ns]')).dt.days
         
         # Distribution of delivery times
-        st.subheader("Distribution of Delivery Times")
+        st.markdown("#### Distribution of Delivery Times (Days)")
         fig = px.histogram(orders_df[orders_df['delivery_time'].between(0, 180)],
                         x='delivery_time',
                         nbins=180,
-                        labels={'delivery_time': 'Delivery Time (Days)'},
-                        title='Distribution of Delivery Times (up to 30 days)')
+                        labels={'delivery_time': 'Delivery Time (Days)'})
         st.plotly_chart(fig)
         st.markdown("As we can see, most deliveries are made within 10 days, with a few outliers taking up to 30 days. However, some cities may experience longer delivery times that reached 180 days due to infrastructure issues or seller location.")
     
@@ -346,7 +343,7 @@ elif page == "🚚 Delivery Analysis":
     
     with st.container(border = True):
         # Cities with longest delivery times
-        st.subheader("Cities with Longest Average Delivery Times")
+        st.markdown("#### Top 10 Cities with Longest Average Delivery Times")
         
         orders_with_city = pd.merge(orders_df, customers_df[['customer_id', 'customer_city']], on='customer_id')
         avg_delivery_times = orders_with_city.groupby('customer_city')['delivery_time'].mean()
@@ -356,7 +353,6 @@ elif page == "🚚 Delivery Analysis":
             x=longest_delivery_times.index, 
             y=longest_delivery_times.values,
             labels={'x': 'City', 'y': 'Average Delivery Time (Days)'},
-            title='Top 10 Cities with Longest Average Delivery Times',
             color=longest_delivery_times.values,
             color_continuous_scale=['yellow', 'orange']
         )
