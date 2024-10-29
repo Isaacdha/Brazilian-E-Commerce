@@ -21,14 +21,14 @@ st.set_page_config(
 def load_data():
     # Load all datasets
     customers_df = pd.read_csv('Dashboard/Data/customers_dataset.csv', skiprows=1)
-    geolocation_df = pd.read_csv('Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
-    orders_df = pd.read_csv('Data/orders_dataset.csv', skiprows=1)
-    order_items_df = pd.read_csv('Data/order_items_dataset.csv', skiprows=1)
-    order_payment_df = pd.read_csv('Data/order_payments_dataset.csv', skiprows=1)
-    order_reviews_df = pd.read_csv('Data/order_reviews_dataset.csv', skiprows=1)
-    products_df = pd.read_csv('Data/products_dataset.csv', skiprows=1)
-    product_category_trans_df = pd.read_csv('Data/product_category_name_translation.csv', skiprows=1)
-    seller_df = pd.read_csv('Data/sellers_dataset.csv', skiprows=1)
+    geolocation_df = pd.read_csv('Dashboard/Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
+    orders_df = pd.read_csv('Dashboard/Data/orders_dataset.csv', skiprows=1)
+    order_items_df = pd.read_csv('Dashboard/Data/order_items_dataset.csv', skiprows=1)
+    order_payment_df = pd.read_csv('Dashboard/Data/order_payments_dataset.csv', skiprows=1)
+    order_reviews_df = pd.read_csv('Dashboard/Data/order_reviews_dataset.csv', skiprows=1)
+    products_df = pd.read_csv('Dashboard/Data/products_dataset.csv', skiprows=1)
+    product_category_trans_df = pd.read_csv('Dashboard/Data/product_category_name_translation.csv', skiprows=1)
+    seller_df = pd.read_csv('Dashboard/Data/sellers_dataset.csv', skiprows=1)
     
     # Convert date columns
     orders_df['order_purchase_timestamp'] = pd.to_datetime(orders_df['order_purchase_timestamp'])
