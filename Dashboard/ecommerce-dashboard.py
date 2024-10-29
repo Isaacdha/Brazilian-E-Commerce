@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import folium
-from folium.plugins import MarkerCluster
+import matplotlib.pyplot as plt
+from shapely.geometry import Point
 import branca.colormap as cm
+import geopandas as gpd
 from streamlit_folium import st_folium
 import plotly.express as px
-import plotly.graph_objects as go
 sns.set_style('whitegrid')
 
 # Set page config
@@ -199,52 +200,32 @@ elif page == "🌍 Customer Distribution":
         # Customer Location Map
         st.markdown("#### Customer Distribution Map (Aggregated by City)")
 
-        # Merge customers_df with orders_df to get the most recent purchase date for each customer
+        # Filter out customers with no purchases
+        purchased_customers_df = customers_df[customers_df['customer_id'].isin(orders_df['customer_id'].unique())]
+
+        # Merge with orders_df to get the most recent purchase date for each customer
         recent_orders_df = orders_df.loc[orders_df.groupby('customer_id')['order_purchase_timestamp'].idxmax()]
 
         # Merge with geolocation_df to get location information
-        customer_locations_df = pd.merge(customers_df, recent_orders_df[['customer_id', 'order_purchase_timestamp']], on='customer_id')
+        customer_locations_df = pd.merge(purchased_customers_df, recent_orders_df[['customer_id', 'order_purchase_timestamp']], on='customer_id')
         customer_locations_df = pd.merge(customer_locations_df, geolocation_df, left_on='customer_zip_code_prefix', right_on='geolocation_zip_code_prefix')
 
         # Drop duplicates to ensure each customer ID has only one location
         customer_locations_df.drop_duplicates(subset='customer_id', inplace=True)
 
-        # Aggregate customer locations by city
-        city_customer_counts = customer_locations_df.groupby('geolocation_city').size().reset_index(name='count')
+        # Load a map of Brazil
+        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+        brazil = world[world.name == "Brazil"]
 
-        # Merge with geolocation_df to get the average coordinates for each city
-        city_avg_coords = geolocation_df.groupby('geolocation_city').agg({
-            'geolocation_lat': 'mean',
-            'geolocation_lng': 'mean'
-        }).reset_index()
+        # Create a GeoDataFrame with customer locations
+        geometry = [Point(xy) for xy in zip(customer_locations_df['geolocation_lng'], customer_locations_df['geolocation_lat'])]
+        geo_df = gpd.GeoDataFrame(customer_locations_df, geometry=geometry)
 
-        city_customer_counts = pd.merge(city_customer_counts, city_avg_coords, left_on='geolocation_city', right_on='geolocation_city')
-
-        # Create map
-        customer_map = folium.Map(location=[-14.2350, -51.9253], zoom_start=4)
-
-        # Create a color map
-        colormap = cm.LinearColormap(colors=['green', 'red'], vmin=city_customer_counts['count'].min(), vmax=city_customer_counts['count'].max())
-        colormap.caption = 'Number of Customers'
-
-        # Add city customer counts to the map with heatmap markers
-        for idx, row in city_customer_counts.iterrows():
-            folium.CircleMarker(
-                location=[row['geolocation_lat'], row['geolocation_lng']],
-                radius=10,
-                color=colormap(row['count']),
-                fill=True,
-                fill_color=colormap(row['count']),
-                popup=f"{row['geolocation_city']}: {row['count']} customers"
-            ).add_to(customer_map)
-
-        # Add the colormap to the map
-        customer_map.add_child(colormap)
-
-        st_folium(customer_map, width='100%')
-        st.markdown("The map used aggregates customer locations to reduce the number of points displayed. The majority of customers are located in the southeastern region of Brazil, particularly around São Paulo (showing the highest concentration) and Rio Grande do Sul Region. So, these areas must always be prioritized both through policies and infrastructure to maintain the number of consumers and the number of goods sold.")
-    
-    st.markdown("")
+        # Plot the map
+        fig, ax = plt.subplots(figsize=(10, 10))
+        brazil.plot(ax=ax, color='white', edgecolor='black')
+        st.pyplot(fig)
+        
     st.markdown("Now, lets answer the second question by visualizing 15 city with the highest and lowest number of orders") 
     st.markdown("")
     
