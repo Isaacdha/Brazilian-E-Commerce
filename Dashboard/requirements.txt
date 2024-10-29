@@ -4,3 +4,4 @@ seaborn==0.13.2
 folium==0.18.0
 branca==0.8.0
 plotly==5.22.0
+streamlit_folium
