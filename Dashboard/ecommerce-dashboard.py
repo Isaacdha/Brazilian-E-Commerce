@@ -103,6 +103,9 @@ except FileNotFoundError as e:
     st.error(f'File not found: {missing_file}. Please ensure all dataset files are in the "Data" directory of this script.')
     st.stop()
 
+with open('static/style.css') as f:
+    st.write(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    
 # Sidebar
 st.sidebar.image(".streamlit/Banner.webp", use_column_width=True)
 st.sidebar.title("Brazillian E-Commerce Data Analysis")
@@ -119,7 +122,7 @@ page = st.sidebar.radio(
 
 # Add disclaimer for Customer Distribution page
 if page == "🌍 Customer Distribution":
-    st.sidebar.warning("Note: Loading the Customer Distribution page may take a while (ETA 3 Minute) due to extensive use of folium for mapping and visualization.")
+    st.sidebar.warning("Note: Loading the Customer Distribution page may take a while due to extensive use of folium for mapping and visualization.")
 
 # Add credits to the bottom right corner
 st.markdown(
