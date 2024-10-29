@@ -187,40 +187,6 @@ elif page == "🌍 Customer Distribution":
     st.markdown("Lets answer the first question by visualizing the customer distribution in a map")
     st.markdown("")
     
-    with st.container(border=True):
-        # Customer Location Map
-        st.markdown("#### Customer Distribution Map (Aggregated by City)")
-
-        # Filter out customers with no purchases
-        purchased_customers_df = customers_df[customers_df['customer_id'].isin(orders_df['customer_id'].unique())]
-
-        # Merge with orders_df to get the most recent purchase date for each customer
-        recent_orders_df = orders_df.loc[orders_df.groupby('customer_id')['order_purchase_timestamp'].idxmax()]
-
-        # Merge with geolocation_df to get location information
-        customer_locations_df = pd.merge(purchased_customers_df, recent_orders_df[['customer_id', 'order_purchase_timestamp']], on='customer_id')
-        customer_locations_df = pd.merge(customer_locations_df, geolocation_df, left_on='customer_zip_code_prefix', right_on='geolocation_zip_code_prefix')
-
-        # Drop duplicates to ensure each customer ID has only one location
-        customer_locations_df.drop_duplicates(subset='customer_id', inplace=True)
-
-        # Aggregate the number of customers in each city
-        city_customer_counts = customer_locations_df['customer_city'].value_counts().reset_index()
-        city_customer_counts.columns = ['customer_city', 'customer_count']
-
-        # Select the top 15 cities with the most customers
-        top_15_customer_cities = city_customer_counts.head(15)
-
-        # Plot the bar chart
-        fig, ax = plt.subplots(figsize=(12, 6))
-        sns.barplot(x='customer_count', y='customer_city', data=top_15_customer_cities, palette='viridis', ax=ax)
-        ax.set_title('Top 15 Cities with Most Customers')
-        ax.set_xlabel('Number of Customers')
-        ax.set_ylabel('City')
-        st.pyplot(fig)
-        
-        
-        
     st.markdown("Now, lets answer the second question by visualizing 15 city with the highest and lowest number of orders") 
     st.markdown("")
     
