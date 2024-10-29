@@ -17,20 +17,20 @@ st.set_page_config(
 # Function to load data
 @st.cache_data
 def load_customers():
-    customers_df = pd.read_csv('Dashboard/Data/customers_dataset.csv', skiprows=1)
+    customers_df = pd.read_csv('Data/customers_dataset.csv', skiprows=1)
     customers_df['customer_city'] = customers_df['customer_city'].str.title()
     return customers_df
 
 @st.cache_data
 def load_geolocation():
-    geolocation_df = pd.read_csv('Dashboard/Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
+    geolocation_df = pd.read_csv('Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
     geolocation_df['geolocation_city'] = geolocation_df['geolocation_city'].str.title()
     geolocation_df.drop_duplicates(inplace=True)
     return geolocation_df
 
 @st.cache_data
 def load_orders():
-    orders_df = pd.read_csv('Dashboard/Data/orders_dataset.csv', skiprows=1)
+    orders_df = pd.read_csv('Data/orders_dataset.csv', skiprows=1)
     orders_df['order_purchase_timestamp'] = pd.to_datetime(orders_df['order_purchase_timestamp'])
     orders_df['order_approved_at'] = pd.to_datetime(orders_df['order_approved_at'])
     orders_df['order_delivered_carrier_date'] = pd.to_datetime(orders_df['order_delivered_carrier_date'])
@@ -40,17 +40,17 @@ def load_orders():
 
 @st.cache_data
 def load_order_items():
-    order_items_df = pd.read_csv('Dashboard/Data/order_items_dataset.csv', skiprows=1)
+    order_items_df = pd.read_csv('Data/order_items_dataset.csv', skiprows=1)
     order_items_df['shipping_limit_date'] = pd.to_datetime(order_items_df['shipping_limit_date'])
     return order_items_df
 
 @st.cache_data
 def load_order_payments():
-    return pd.read_csv('Dashboard/Data/order_payments_dataset.csv', skiprows=1)
+    return pd.read_csv('Data/order_payments_dataset.csv', skiprows=1)
 
 @st.cache_data
 def load_order_reviews():
-    order_reviews_df = pd.read_csv('Dashboard/Data/order_reviews_dataset.csv', skiprows=1)
+    order_reviews_df = pd.read_csv('Data/order_reviews_dataset.csv', skiprows=1)
     order_reviews_df['review_creation_date'] = pd.to_datetime(order_reviews_df['review_creation_date'])
     order_reviews_df['review_answer_timestamp'] = pd.to_datetime(order_reviews_df['review_answer_timestamp'])
     order_reviews_df['review_comment_title'].fillna('No Comments', inplace=True)
@@ -59,17 +59,17 @@ def load_order_reviews():
 
 @st.cache_data
 def load_products():
-    products_df = pd.read_csv('Dashboard/Data/products_dataset.csv', skiprows=1)
+    products_df = pd.read_csv('Data/products_dataset.csv', skiprows=1)
     products_df['product_category_name'].fillna('Other Categories', inplace=True)
     return products_df
 
 @st.cache_data
 def load_product_category_trans():
-    return pd.read_csv('Dashboard/Data/product_category_name_translation.csv', skiprows=1)
+    return pd.read_csv('Data/product_category_name_translation.csv', skiprows=1)
 
 @st.cache_data
 def load_seller():
-    seller_df = pd.read_csv('Dashboard/Data/sellers_dataset.csv', skiprows=1)
+    seller_df = pd.read_csv('Data/sellers_dataset.csv', skiprows=1)
     seller_df['seller_city'] = seller_df['seller_city'].str.title()
     return seller_df
 
