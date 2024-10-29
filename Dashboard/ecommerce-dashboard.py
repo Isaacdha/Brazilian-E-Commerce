@@ -23,7 +23,6 @@ def load_customers():
     customers_df['customer_city'] = customers_df['customer_city'].str.title()
     return customers_df
 
-@st.cache_data
 def load_geolocation():
     geolocation_df = pd.read_csv('Dashboard/Data/geolocation_dataset.csv', low_memory=False, skiprows=1)
     geolocation_df['geolocation_city'] = geolocation_df['geolocation_city'].str.title()
