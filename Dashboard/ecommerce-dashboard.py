@@ -94,9 +94,15 @@ order_reviews_df = order_reviews_df.assign(
 
 # Load data
 try:
-    (customers_df, geolocation_df, orders_df, order_items_df, 
-     order_payment_df, order_reviews_df, products_df, 
-     product_category_trans_df, seller_df) = load_data()
+    customers_df = load_customers()
+    geolocation_df = load_geolocation()
+    orders_df = load_orders()
+    order_items_df = load_order_items()
+    order_payment_df = load_order_payments()
+    order_reviews_df = load_order_reviews()
+    products_df = load_products()
+    product_category_trans_df = load_product_category_trans()
+    seller_df = load_seller()
 except FileNotFoundError as e:
     missing_file = str(e).split("'")[1]
     st.error(f'File not found: {missing_file}. Please ensure all dataset files are in the "Data" directory of this script.')
