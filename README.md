@@ -1,59 +1,118 @@
+<div align="center">
 
+# Brazilian E-Commerce Data Analysis Platform 🛍️
 
-# Brazilian E-Commerce Data Analysis 🇧🇷
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://brazilian-ecommerce-idha.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Explore the Brazilian E-Commerce Data Dashboard on Streamlit](https://brazilian-ecommerce-idha.streamlit.app/)
+*An advanced analytics platform for exploring Brazilian e-commerce trends and insights*
 
-## Table of Contents
-- [Overview](#overview)
-- [Data Sources](#data-sources)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+[Live Dashboard](https://brazilian-ecommerce-idha.streamlit.app/) | [Documentation](#documentation) | [Getting Started](#getting-started) | [Contributing](#contributing)
 
-## Overview
-This project focuses on analyzing and visualizing public data from Brazilian e-commerce. It includes scripts for data wrangling, exploratory data analysis (EDA), answering business questions, and a Streamlit dashboard deployment for interactive data exploration. The goal is to derive insights from Brazilian E-Commerce Public Dataset.
+</div>
 
-## Data Sources
-The project utilizes the E-Commerce Public Dataset from the [Brazilian E-Commerce Public Data](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and used in course offered by [Dicoding](https://www.dicoding.com/).
+---
 
-## Project Structure
-- `Dashboard/`: Contains `ecommerce-dashboard.py`, which generates the data analysis dashboards.\
-   -- `.streamlit/`: Contains config file and image for dashboard for running in local computer \
-   -- `Data/`: Contrains raw csv data files from source for running in local computer \
-- `Data/`: Holds the raw CSV data files from the source for running in streamlit cloud \
-- `.streamlit` : Holds config file and image for dashboard for running in streamlit cloud \
-- `E-Commerce Public Dataset Analysis.ipynb`: Jupyter notebook for performing data task such as wrangling, exploration, analysis, and question answering. \
-- `E-Commerce Public Dataset Analysis _ID.ipynb`: Indonesian version of `notebook.ipynb`. \
-- `README.md`: This documentation file. \
-- `requirements.txt`: Required library to run the dashboard \
-- `url.txt`: Contains url for deployed dashboard at streamlit cloud \
+## 📊 Overview
 
-## Installation
-1. Clone the repository to your local machine or just download it.
-    ```sh
-    git clone https://github.com/Isaacdha/Brazilian-E-Commerce.git
-    ```
-    or\
-    `https://github.com/Isaacdha/Brazilian-E-Commerce/archive/refs/heads/main.zip`
-2. Navigate to the project directory:
-    ```sh
-    cd data-analyst-dicoding
-    ```
-3. Install the required Python packages:
-    ```sh
-    pip install -r requirements.txt
-    ```
+The Brazilian E-Commerce Data Analysis Platform provides comprehensive analytics and visualization tools for examining public e-commerce data from Brazil. This project combines robust data processing with interactive visualizations to deliver actionable business insights.
 
-## Usage
-Both dashboards (static in the form of ipynb) and dynamic (in the form of streamlit apps) already have data wrangling, data cleaning, and information search features by answering business questions.
-1. **Data Wrangling**: Use either `E-Commerce Public Dataset Analysis.ipynb` file to clean and prepare the data or streamlit deployed app to directly jumps to visualization.
-2. **Exploratory Data Analysis (EDA)**: Analyze the data using the provided scripts to uncover patterns in the e-commerce dataset.
-3. **Visualization**: Use the `E-Commerce Public Dataset Analysis.ipynb` or Launch the Streamlit dashboard for interactive data exploration:
-    ```sh
-    cd data-analyst-dicoding/dashboard
-    streamlit run dashboard.py
-    ```
-    Access the dashboard in your web browser at `http://localhost:8501`.
+### Key Features
+- 📈 Interactive data visualization dashboard
+- 🔍 Advanced exploratory data analysis (EDA)
+- 💼 Business intelligence metrics
+- 🔄 Real-time data processing
+- 📱 Mobile-responsive design
 
+## 📚 Documentation
 
+### Data Sources
+The analysis is powered by the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), provided in partnership with [Dicoding](https://www.dicoding.com/).
+
+### Repository Structure
+```
+brazilian-e-commerce/
+├── Dashboard/
+│   ├── ecommerce-dashboard.py     # Main dashboard application
+│   ├── .streamlit/               # Local dashboard configuration
+│   └── Data/                     # Local data files
+├── Data/                         # Cloud deployment data
+├── .streamlit/                   # Cloud configuration files
+├── notebooks/
+│   ├── E-Commerce Public Dataset Analysis.ipynb
+│   └── E-Commerce Public Dataset Analysis _ID.ipynb
+├── requirements.txt
+├── url.txt
+└── README.md
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.7 or higher
+- pip package manager
+
+### Installation
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/Isaacdha/Brazilian-E-Commerce.git
+```
+   or download directly:
+```bash
+wget https://github.com/Isaacdha/Brazilian-E-Commerce/archive/refs/heads/main.zip
+```
+
+2. **Navigate to Project Directory**
+```bash
+cd Brazilian-E-Commerce
+```
+
+3. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+## 💻 Usage
+
+### Interactive Dashboard
+Launch the Streamlit dashboard locally:
+```bash
+cd Dashboard
+streamlit run ecommerce-dashboard.py
+```
+Access the dashboard at `http://localhost:8501`
+
+### Jupyter Notebooks
+Two comprehensive notebooks are provided:
+- `E-Commerce Public Dataset Analysis.ipynb` (English)
+- `E-Commerce Public Dataset Analysis _ID.ipynb` (Indonesian)
+
+These notebooks contain:
+- Data wrangling procedures
+- Exploratory data analysis
+- Business insights
+- Visualization examples
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- [Kaggle](https://www.kaggle.com/) for providing the dataset
+- [Dicoding](https://www.dicoding.com/) for educational support
+- [Streamlit](https://streamlit.io/) for the visualization framework
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Isaacdha](https://github.com/Isaacdha)
+
+</div>
