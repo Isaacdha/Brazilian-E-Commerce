@@ -1,0 +1,2 @@
+/* Delete the iframe in folium rendering */
+iframe[title="streamlit_folium.st_folium"] { height: 500px;}
