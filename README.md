@@ -20,7 +20,7 @@ The Brazilian E-Commerce Data Analysis Platform provides comprehensive analytics
 
 ### Key Features
 - 📈 Interactive data visualization dashboard
-- 🔍 Advanced exploratory data analysis (EDA)
+- 🔍 Exploratory data analysis (EDA)
 - 💼 Business intelligence metrics
 - 🔄 Real-time data processing
 
