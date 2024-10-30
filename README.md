@@ -15,7 +15,7 @@
 This project focuses on analyzing and visualizing public data from Brazilian e-commerce. It includes scripts for data wrangling, exploratory data analysis (EDA), answering business questions, and a Streamlit dashboard deployment for interactive data exploration. The goal is to derive insights from Brazilian E-Commerce Public Dataset.
 
 ## Data Sources
-The project utilizes the E-Commerce Public Dataset from the [Brazilian E-Commerce Public Data](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and was used in course offered by [Dicoding](https://www.dicoding.com/).
+The project utilizes the E-Commerce Public Dataset from the [Brazilian E-Commerce Public Data](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and used in course offered by [Dicoding](https://www.dicoding.com/).
 
 ## Project Structure
 - `Dashboard/`: Contains `ecommerce-dashboard.py`, which generates the data analysis dashboards.\
