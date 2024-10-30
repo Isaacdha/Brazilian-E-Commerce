@@ -347,8 +347,7 @@ elif page == "🚚 Delivery Analysis":
             x=longest_delivery_times.index, 
             y=longest_delivery_times.values,
             labels={'x': 'City', 'y': 'Average Delivery Time (Days)'},
-            color=longest_delivery_times.values,
-            color_continuous_scale=['yellow', 'orange']
+            color_discrete_sequence=['orange'] * len(longest_delivery_times)
         )
         st.plotly_chart(fig)
         st.markdown("From the bar chart shown, it can be seen that the longest average delivery time is in the city of Novo Brasil and followed by the cities of Capinzal Do Norte and Adhemar De Barros. These cities are recommended to be evaluated and given infrastructure support to make the delivery of goods more efficient.")
@@ -367,10 +366,9 @@ elif page == "⭐ Customer Reviews":
         st.markdown("#### Distribution of Review Scores")
         review_dist = order_reviews_df['review_score'].value_counts().sort_index()
         fig = px.bar(x=review_dist.index, 
-                 y=review_dist.values,
-                 labels={'x': 'Review Score', 'y': 'Count'},
-                 color=review_dist.index,
-                 color_continuous_scale=['red', 'blue'])
+             y=review_dist.values,
+             labels={'x': 'Review Score', 'y': 'Count'},
+             color_discrete_sequence=['blue'] * len(review_dist))
         st.plotly_chart(fig)
         st.markdown("Rating 5 is the most common rating, signifying that most customers are satisfied with their purchases. But, does that can represent all cities?")
     
@@ -464,11 +462,10 @@ elif page == "⭐ Customer Reviews":
         worst_reviewed_cities = city_reviews.nsmallest(10, 'avg_score')
         
         fig = px.bar(worst_reviewed_cities,
-                    x='city',
-                    y='avg_score',
-                    labels={'city': 'City', 'avg_score': 'Average Review Score'},
-                    color='avg_score',
-                    color_continuous_scale=['red', 'orange'])
+                x='city',
+                y='avg_score',
+                labels={'city': 'City', 'avg_score': 'Average Review Score'},
+                color_discrete_sequence=['orange'] * len(worst_reviewed_cities))
         st.plotly_chart(fig)
         
         st.markdown("The bar chart highlights the 10 cities with the lowest average customer ratings, with Prudente De Morais, Abelardo Luz, and Iguaba Grande at the bottom. These cities may face recurring issues affecting customer satisfaction, suggesting areas for targeted service improvements. Addressing specific concerns in these locations could help boost overall customer ratings.")
@@ -495,10 +492,9 @@ elif page == "📦 Product Analysis":
         
         category_orders = products_with_category['product_category_name_english'].value_counts().head(10)
         fig = px.bar(x=category_orders.index,
-                y=category_orders.values,
-                labels={'x': 'Category', 'y': 'Number of Orders'},
-                color=category_orders.values,
-                color_continuous_scale=['lightgreen', 'green'])
+            y=category_orders.values,
+            labels={'x': 'Category', 'y': 'Number of Orders'},
+            color_discrete_sequence=['green'] * len(category_orders))
         st.plotly_chart(fig)
         st.markdown('Top 5 Product Categories: The "Bed_Bath_Table" category has the highest number of orders, followed closely by "Health_Beauty," "Sports_Leisure," and "Furniture_Decor." These categories demonstrate higher consumer demand, with "Computers_Accessories" rounding out the top five.')
         st.markdown("if managed properly, these categories could drive significant revenue growth.")
@@ -513,10 +509,9 @@ elif page == "📦 Product Analysis":
         
         category_orders = products_with_category['product_category_name_english'].value_counts().tail(10)
         fig = px.bar(x=category_orders.index,
-                y=category_orders.values,
-                labels={'x': 'Category', 'y': 'Number of Orders'},
-                color=category_orders.values,
-                color_continuous_scale=['red', 'orange'])
+            y=category_orders.values,
+            labels={'x': 'Category', 'y': 'Number of Orders'},
+            color_discrete_sequence=['orange'] * len(category_orders))
         st.plotly_chart(fig)
         st.markdown('Bottom 5 Product Categories: The "Security_and_Services" category has the lowest number of orders, followed by "Fashion_Children_s_Clothes," "La Cuisine," "CD DVD Musical," and "Art/Craftmanship". These categories may require further evaluation to determine why they have lower demand compared to other categories.')
         st.markdown("Improving product quality, marketing, or pricing strategies could help boost sales in these categories.")
