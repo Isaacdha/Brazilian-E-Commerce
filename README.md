@@ -19,15 +19,15 @@ The project utilizes the E-Commerce Public Dataset from the [Brazilian E-Commerc
 
 ## Project Structure
 - `Dashboard/`: Contains `ecommerce-dashboard.py`, which generates the data analysis dashboards.\
-   -- `.streamlit/`: Contains config file and image for dashboard for running in local computer
-   -- `Data/`: Contrains raw csv data files from source for running in local computer
-- `Data/`: Holds the raw CSV data files from the source for running in streamlit cloud
-- `.streamlit` : Holds config file and image for dashboard for running in streamlit cloud
-- `E-Commerce Public Dataset Analysis.ipynb`: Jupyter notebook for performing data task such as wrangling, exploration, analysis, and question answering.
-- `E-Commerce Public Dataset Analysis _ID.ipynb`: Indonesian version of `notebook.ipynb`.
-- `README.md`: This documentation file.
-- `requirements.txt`: Required library to run the dashboard
-- `url.txt`: Contains url for deployed dashboard at streamlit cloud
+   -- `.streamlit/`: Contains config file and image for dashboard for running in local computer \
+   -- `Data/`: Contrains raw csv data files from source for running in local computer \
+- `Data/`: Holds the raw CSV data files from the source for running in streamlit cloud \
+- `.streamlit` : Holds config file and image for dashboard for running in streamlit cloud \
+- `E-Commerce Public Dataset Analysis.ipynb`: Jupyter notebook for performing data task such as wrangling, exploration, analysis, and question answering. \
+- `E-Commerce Public Dataset Analysis _ID.ipynb`: Indonesian version of `notebook.ipynb`. \
+- `README.md`: This documentation file. \
+- `requirements.txt`: Required library to run the dashboard \
+- `url.txt`: Contains url for deployed dashboard at streamlit cloud \
 
 ## Installation
 1. Clone the repository to your local machine or just download it.
