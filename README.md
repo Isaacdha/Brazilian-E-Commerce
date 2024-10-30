@@ -23,12 +23,11 @@ The Brazilian E-Commerce Data Analysis Platform provides comprehensive analytics
 - 🔍 Advanced exploratory data analysis (EDA)
 - 💼 Business intelligence metrics
 - 🔄 Real-time data processing
-- 📱 Mobile-responsive design
 
 ## 📚 Documentation
 
 ### Data Sources
-The analysis is powered by the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), provided in partnership with [Dicoding](https://www.dicoding.com/).
+The analysis is powered by the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), used for learning in [Dicoding](https://www.dicoding.com/).
 
 ### Repository Structure
 ```
