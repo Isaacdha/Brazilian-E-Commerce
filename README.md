@@ -24,7 +24,7 @@ The Brazilian E-Commerce Data Analysis Platform provides comprehensive analytics
 - 💼 Business intelligence metrics
 - 🔄 Real-time data processing
 
-## 📚 Documentation
+## 📚 Documentation <a id="documentation"></a>
 
 ### Data Sources
 The analysis is powered by the [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), used for learning in [Dicoding](https://www.dicoding.com/).
@@ -46,7 +46,7 @@ brazilian-e-commerce/
 └── README.md
 ```
 
-## 🚀 Getting Started
+## 🚀 Getting Started <a id="getting-started"></a>
 
 ### Prerequisites
 - Python 3.7 or higher
@@ -94,7 +94,7 @@ These notebooks contain:
 - Business insights
 - Visualization examples
 
-## 🤝 Contributing
+## 🤝 Contributing <a id="contributing"></a>
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
