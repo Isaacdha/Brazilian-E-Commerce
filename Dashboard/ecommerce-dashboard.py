@@ -156,21 +156,22 @@ if page == "🏠 Overview":
     * 💳 Payment Methods
     """)
     
-    st.markdown("Use the navigation bar on the left to explore different aspects of the e-commerce data.")
-    # Key Metrics
-    col1, col2, col3, col4, col5 = st.columns(5)
-    
-    with col1:
-        st.metric("Total Customers", customers_df["customer_unique_id"].nunique())
-    with col2:
-        st.metric("Total Orders", orders_df["order_id"].nunique())
-    with col3:
-        st.metric("Total Products", products_df["product_id"].nunique())
-    with col4:
-        st.metric("Average Rating", f"{order_reviews_df['review_score'].mean():.2f}")
-    with col5:
-        st.metric("Average Order Value", 
-                 f"${order_payment_df['payment_value'].mean():.2f}")
+    with st.container():
+        st.markdown("Use the navigation bar on the left to explore different aspects of the e-commerce data.")
+        # Key Metrics
+        col1, col2, col3, col4, col5 = st.columns(5)
+        
+        with col1:
+            st.metric("Total Customers", customers_df["customer_unique_id"].nunique())
+        with col2:
+            st.metric("Total Orders", orders_df["order_id"].nunique())
+        with col3:
+            st.metric("Total Products", products_df["product_id"].nunique())
+        with col4:
+            st.metric("Average Rating", f"{order_reviews_df['review_score'].mean():.2f}")
+        with col5:
+            st.metric("Average Order Value", 
+                     f"${order_payment_df['payment_value'].mean():.2f}")
 
     # Button to show profile of the maker
     with st.popover("About the Maker"):
