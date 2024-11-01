@@ -104,19 +104,20 @@ with open('.streamlit/style.css') as f:
     st.write(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     
 # Sidebar
+st.logo(".streamlit/Logo_Small.png", icon_image=".streamlit/Logo_Small.png", size="large")
 st.sidebar.image(".streamlit/Banner.webp", use_column_width=True)
 st.sidebar.title("Brazillian E-Commerce Data Analysis")
-st.sidebar.title("Navigation")
-st.logo(".streamlit/Logo_Small.png", icon_image=".streamlit/Logo_Small.png", size="small")
-page = st.sidebar.radio(
-    "Select a Page",
-    ["🏠 Overview", 
-     "🌍 Customer Distribution", 
-     "🚚 Delivery Analysis",
-     "⭐ Customer Reviews",
-     "📦 Product Analysis",
-     "💳 Payment Analysis"]
-)
+with st.sidebar:
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio(
+        "Select a Page",
+        ["🏠 Overview", 
+         "🌍 Customer Distribution", 
+         "🚚 Delivery Analysis",
+         "⭐ Customer Reviews",
+         "📦 Product Analysis",
+         "💳 Payment Analysis"]
+    )
 
 # Add disclaimer for Customer Distribution page
 if page == "🌍 Customer Distribution":
@@ -156,29 +157,48 @@ if page == "🏠 Overview":
     * 💳 Payment Methods
     """)
     
-    with st.container():
-        st.markdown("Use the navigation bar on the left to explore different aspects of the e-commerce data.")
-        # Key Metrics
-        col1, col2, col3, col4, col5 = st.columns(5)
-        
-        with col1:
-            st.metric("Total Customers", customers_df["customer_unique_id"].nunique())
-        with col2:
-            st.metric("Total Orders", orders_df["order_id"].nunique())
-        with col3:
-            st.metric("Total Products", products_df["product_id"].nunique())
-        with col4:
-            st.metric("Average Rating", f"{order_reviews_df['review_score'].mean():.2f}")
-        with col5:
-            st.metric("Average Order Value", 
-                     f"${order_payment_df['payment_value'].mean():.2f}")
+    st.markdown("Use the navigation bar on the left to explore different aspects of the e-commerce data.")
+    # Key Metrics
+    col1, col2, col3, col4, col5 = st.columns(5)
+    
+    with col1:
+        st.metric("Total Customers", customers_df["customer_unique_id"].nunique())
+    with col2:
+        st.metric("Total Orders", orders_df["order_id"].nunique())
+    with col3:
+        st.metric("Total Products", products_df["product_id"].nunique())
+    with col4:
+        st.metric("Average Rating", f"{order_reviews_df['review_score'].mean():.2f}")
+    with col5:
+        st.metric("Average Order Value", 
+                 f"${order_payment_df['payment_value'].mean():.2f}")
 
     # Button to show profile of the maker
     with st.popover("About the Maker"):
         st.subheader("Coder Profile")
-        st.write("Name: Isaac Dwadattusyah Haikal Azziz")
-        st.write("Email: isaacazziz@gmail.com")
-        st.write("LinkedIn: [Isaac's LinkedIn](https://id.linkedin.com/in/isaacdha)")
+        
+        # HTML table with invisible borders
+        st.markdown(
+            f"""
+            <style>
+                table {{ 
+                    border-collapse: collapse; 
+                    width: 100%; 
+                }}
+                td {{
+                    border: 1px solid #082c34;  /* Matches background color */
+                    padding: 5px;
+                }}
+            </style>
+            <table>
+                <tr><td><strong>Email</strong></td><td>:</td><td>isaacazziz@gmail.com</td></tr>
+                <tr><td><strong>LinkedIn</strong></td><td>:</td><td><a href="https://id.linkedin.com/in/isaacdha">Isaac's LinkedIn</a></td></tr>
+                <tr><td><strong>GitHub</strong></td><td>:</td><td><a href="https://github.com/Isaacdha2024">Isaac's GitHub</a></td></tr>
+            </table>
+            """,
+            unsafe_allow_html=True
+        )
+
         
 # Customer Distribution Page
 elif page == "🌍 Customer Distribution":
@@ -554,5 +574,3 @@ elif page == "💳 Payment Analysis":
         st.plotly_chart(fig)
         
         st.markdown("The bar chart illustrates the average purchase size for each payment method, with credit card having the highest average purchase value. Boleto and voucher have similar average purchase values, while debit card has the lowest. These insights can help businesses tailor marketing strategies to encourage higher-value purchases and increase revenue.")
-
-
