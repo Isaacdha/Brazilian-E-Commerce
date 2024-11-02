@@ -106,7 +106,7 @@ with open('.streamlit/style.css') as f:
     st.write(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     
 # Sidebar
-st.logo(".streamlit/Logo_Small.png", icon_image=".streamlit/Logo_Small.png", size="large")
+st.logo(".streamlit/Logo.png", icon_image=".streamlit/Logo_Small.png", size="large")
 st.sidebar.image(".streamlit/Banner.webp", use_column_width=True)
 st.sidebar.title("Brazillian E-Commerce Data Analysis")
 with st.sidebar:
