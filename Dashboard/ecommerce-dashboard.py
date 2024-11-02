@@ -198,7 +198,7 @@ if page == "🏠 Overview":
             <table>
                 <tr><td><strong>Email</strong></td><td>:</td><td>isaacazziz@gmail.com</td></tr>
                 <tr><td><strong>LinkedIn</strong></td><td>:</td><td><a href="https://id.linkedin.com/in/isaacdha">Isaac's LinkedIn</a></td></tr>
-                <tr><td><strong>GitHub</strong></td><td>:</td><td><a href="https://github.com/Isaacdha2024">Isaac's GitHub</a></td></tr>
+                <tr><td><strong>GitHub</strong></td><td>:</td><td><a href="https://github.com/Isaacdha">Isaac's GitHub</a></td></tr>
             </table>
             """,
             unsafe_allow_html=True
