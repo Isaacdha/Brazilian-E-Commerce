@@ -5,6 +5,8 @@ import folium
 import branca.colormap as cm
 from streamlit_folium import st_folium
 import plotly.express as px
+from streamlit_option_menu import option_menu
+
 sns.set_style('whitegrid')
 
 # Set page config
@@ -108,15 +110,18 @@ st.logo(".streamlit/Logo_Small.png", icon_image=".streamlit/Logo_Small.png", siz
 st.sidebar.image(".streamlit/Banner.webp", use_column_width=True)
 st.sidebar.title("Brazillian E-Commerce Data Analysis")
 with st.sidebar:
-    st.sidebar.title("Navigation")
-    page = st.sidebar.radio(
-        "Select a Page",
+    page = option_menu(
+        "Navigation",
         ["🏠 Overview", 
          "🌍 Customer Distribution", 
          "🚚 Delivery Analysis",
          "⭐ Customer Reviews",
          "📦 Product Analysis",
-         "💳 Payment Analysis"]
+         "💳 Payment Analysis"],
+        styles = {
+            "menu-title" : {"font-size": "20px"},
+            "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "--hover-color": "#eee",
+        }}
     )
 
 # Add disclaimer for Customer Distribution page
