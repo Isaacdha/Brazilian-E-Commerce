@@ -120,7 +120,7 @@ with st.sidebar:
          "💳 Payment Analysis"],
         styles = {
             "menu-title" : {"font-size": "20px"},
-            "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "--hover-color": "#eee",
+            "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "--hover-color": "#6082B6",
         }}
     )
 
